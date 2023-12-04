@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /**
+         * output: 
+         * Promise! 0
+         * Last line! 5
+         * 10
+         * 4
+         * 7
+         * 3
+         * 11
+         * Promise! 0
+         * Promise! 1
+         * Promise! 2
+         * Last line! 6
+         * Timeout! 8
+         * Timeout! 9
+         * 
+         * in the async block, when we meet the await keyword, we treat the code as .then() method, execute the code in the next event loop
+         * attention: for .then() method in many places, focus on the layer/level of the event loop they are in
+         * */
+        const myPromise = () => {
+            console.log("Promise!", "0");
+            return Promise.resolve(Promise.resolve("Promise!"));
+        }//this line is executed in the synchronous part of the call stack
+        // equals to: const myPromise = Promise.resolve("Promise!"); fullfilled promise
+
+        function funcOne() {
+            myPromise().then(res => { console.log("7"); return res }).then(res => console.log(res, "1"));
+            setTimeout(() => console.log("Timeout!", "8"), 0);
+            console.log("Last line!", "5");
+        }
+
+        async function funcTwo() {
+            console.log("10");
+            await console.log("4");  //this line is equal to: console.log("4").then({the following code})
+            console.log("3");   //this line is executed in the asynchronous part of the call stack
+            console.log("11");
+            const res = await myPromise();  //if is myPromise, the result is function(){...}, wont be executed
+            console.log(await res, "2");
+            setTimeout(() => console.log("Timeout!", "9"), 0);
+            console.log("Last line!", "6");
+        }
+
+        funcOne();
+        funcTwo();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
