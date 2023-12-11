@@ -7,5 +7,9 @@ If we use let and use count++ to update the state, the component will not rerend
 let [count, setCount] = useState(0);
 count++;
 ```
+### useState vs useReducer
+useState is much simpler than useReducer; useReducer package the state and the function for updating the state together, which is more complex than useState.
+We can use useState to replace useReducer by unboxing the state and the function for updating the state.
 
 
+### useContext vs custom hook
