@@ -13,3 +13,7 @@ We can use useState to replace useReducer by unboxing the state and the function
 
 
 ### useContext vs custom hook
+useContext use a provider to provide the state and the function for updating the state, and then use useContext to get the state and the function for updating the state. 
+
+### custom hook vs redux-react
+custom hook and redux-react are both single source of truth, they are very similar. But custom hook is more simple than redux-react. For redux-react, we need to create a store, create a reducer, create a action, and then use dispatch to update the state. For custom hook, we just need to create a custom hook, and then use the custom hook to update the state. We can use custom hook to replace redux-react.
