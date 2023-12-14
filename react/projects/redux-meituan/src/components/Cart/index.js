@@ -12,10 +12,9 @@ import "./index.scss";
 const Cart = () => {
   const { cartList: cart, isCartOpen } = useSelector((state) => state.foods);
   const dispatch = useDispatch();
-  const total = cart.reduce(
-    (prev, current) => prev + current.count * current.price,
-    0
-  );
+  const total = cart
+    .reduce((prev, current) => prev + current.count * current.price, 0)
+    .toFixed(2);
   return (
     <div className="cartContainer">
       {/* 遮罩层 添加visible类名可以显示出来 */}
