@@ -27,6 +27,8 @@
   .cart {
     z-index: 2;
     position: absolute;
+    cursor: pointer;
+
     left: 12px;
     right: 12px;
     bottom: 13px;
@@ -143,8 +145,9 @@
         display: flex;
         -webkit-align-items: center;
         align-items: center;
+        cursor: pointer;
         &::before {
-          content: '';
+          content: "";
           display: inline-block;
           background: url(https://zqran.gitee.io/images/waimai/del.png);
           width: 12px;
@@ -163,7 +166,7 @@
       border-top: 1px solid rgba(216, 216, 216, 0.3);
 
       &::after {
-        content: '';
+        content: "";
         display: block;
         height: 90px;
       }
@@ -176,7 +179,7 @@
         box-sizing: border-box;
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: 0;
           height: 1px;
