@@ -16,6 +16,25 @@ const Month = () => {
   const monthGroupedBillList = useMemo(() => {
     return _.groupBy(billList, (item) => dayjs(item.date).format(formatter));
   }, [billList]);
+  const { incomeTotal, payTotal, leftTotal } = useMemo(() => {
+    const currentMonthList = monthGroupedBillList[currentDate];
+    if (!currentMonthList) {
+      return {
+        incomeTotal: 0,
+        payTotal: 0,
+        leftTotal: 0,
+      };
+    }
+    const incomeTotal = currentMonthList
+      .filter((item) => item.type === "income")
+      .reduce((prev, cur) => prev + cur.money, 0);
+
+    const payTotal = currentMonthList
+      .filter((item) => item.type === "pay")
+      .reduce((prev, cur) => prev - cur.money, 0);
+    const leftTotal = incomeTotal - payTotal;
+    return { incomeTotal, payTotal, leftTotal };
+  }, [currentDate, monthGroupedBillList]);
   const toggleDateVisible = () => {
     setDateVisible(!dateVisible);
   };
@@ -36,15 +55,15 @@ const Month = () => {
           {/* 统计区域 */}
           <div className="twoLineOverview">
             <div className="item">
-              <span className="money">{100}</span>
+              <span className="money">{payTotal}</span>
               <span className="type">支出</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
+              <span className="money">{incomeTotal}</span>
               <span className="type">收入</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
+              <span className="money">{leftTotal}</span>
               <span className="type">结余</span>
             </div>
           </div>
@@ -61,6 +80,20 @@ const Month = () => {
             onConfirm={(date) => {
               const formattedDate = dayjs(date).format(formatter);
               setCurrentDate(formattedDate);
+              console.log(
+                formattedDate,
+                currentDate,
+                monthGroupedBillList[currentDate]
+              ); //2023 | 02月 2023 | 01月 undefined
+
+              // setIncomeTotal(
+              //   monthGroupedBillList[formattedDate]
+              //     ? monthGroupedBillList[formattedDate]
+              //         .filter((item) => item.type === "income")
+              //         .reduce((prev, cur) => prev + cur.money, 0)
+              //     : 0
+              // );
+
               toggleDateVisible();
             }}
           />
