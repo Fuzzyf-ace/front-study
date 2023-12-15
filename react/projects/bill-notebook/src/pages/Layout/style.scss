@@ -1,0 +1,19 @@
+.nav-app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: min(600px, 100vw);
+  // not same effect:
+  //   min-width: 600px;
+  //   max-width: 100vw;
+  align-content: center;
+  .nav-header {
+  }
+
+  .nav-body {
+    flex: auto;
+  }
+
+  .nav-navbar {
+  }
+}
