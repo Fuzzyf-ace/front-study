@@ -5,6 +5,10 @@ html {
   width: 100%;
 }
 
+body {
+  margin: 0px;
+}
+
 #root {
   display: grid;
   place-items: center;

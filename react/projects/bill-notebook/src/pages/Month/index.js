@@ -5,6 +5,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import _ from "lodash";
+import DailyBill from "./DailyBill/DailyBill";
 
 const Month = () => {
   const formatter = "YYYY | MM月";
@@ -16,6 +17,10 @@ const Month = () => {
   const monthGroupedBillList = useMemo(() => {
     return _.groupBy(billList, (item) => dayjs(item.date).format(formatter));
   }, [billList]);
+  const dayGroupedBillList = _.groupBy(
+    monthGroupedBillList[currentDate] ?? [],
+    (item) => dayjs(item.date).format("MM月DD日")
+  );
   const { incomeTotal, payTotal, leftTotal } = useMemo(() => {
     const currentMonthList = monthGroupedBillList[currentDate];
     if (!currentMonthList) {
@@ -74,17 +79,18 @@ const Month = () => {
             precision="month"
             defaultValue={new Date()}
             visible={dateVisible}
-            tillNow={true}
+            // tillNow={true}
+            max={new Date()}
             onCancel={toggleDateVisible}
             mouseWheel={true}
             onConfirm={(date) => {
               const formattedDate = dayjs(date).format(formatter);
               setCurrentDate(formattedDate);
-              console.log(
-                formattedDate,
-                currentDate,
-                monthGroupedBillList[currentDate]
-              ); //2023 | 02月 2023 | 01月 undefined
+              // console.log(
+              //   formattedDate,
+              //   currentDate,
+              //   monthGroupedBillList[currentDate]
+              // ); //2023 | 02月 2023 | 01月 undefined
 
               // setIncomeTotal(
               //   monthGroupedBillList[formattedDate]
@@ -98,6 +104,28 @@ const Month = () => {
             }}
           />
         </div>
+        {Object.keys(dayGroupedBillList).map((key) => {
+          const date = key;
+          const bills = dayGroupedBillList[key];
+          const incomeTotal = bills
+            .filter((item) => item.type === "income")
+            .reduce((prev, cur) => prev + cur.money, 0);
+
+          const payTotal = bills
+            .filter((item) => item.type === "pay")
+            .reduce((prev, cur) => prev - cur.money, 0);
+          const leftTotal = incomeTotal - payTotal;
+          return (
+            <DailyBill
+              key={key}
+              date={date}
+              income={incomeTotal}
+              pay={payTotal}
+              left={leftTotal}
+              bills={bills}
+            />
+          );
+        })}
       </div>
     </div>
   );
