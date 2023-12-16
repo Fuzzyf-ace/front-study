@@ -111,6 +111,20 @@
       "date": "2023-12-04T03:03:15.617Z",
       "useFor": "drinks",
       "id": 19
+    },
+    {
+      "type": "pay",
+      "money": -5,
+      "date": "2023-12-16T19:19:28.128Z",
+      "useFor": "food",
+      "id": 22
+    },
+    {
+      "type": "income",
+      "money": 20,
+      "date": "2023-12-16T19:19:42.262Z",
+      "useFor": "overtimepay",
+      "id": 23
     }
   ]
 }

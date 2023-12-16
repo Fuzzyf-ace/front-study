@@ -10,10 +10,13 @@ const billStore = createSlice({
     setBillList(state, action) {
       state.billList = action.payload;
     },
+    addBill(state, action) {
+      state.billList.push(action.payload);
+    },
   },
 });
 
-const { setBillList } = billStore.actions;
+const { setBillList, addBill } = billStore.actions;
 
 const fetchBillList = () => {
   return async (dispatch) => {
@@ -22,7 +25,14 @@ const fetchBillList = () => {
   };
 };
 
-export { fetchBillList };
+const addBillRequest = (data) => {
+  return async (dispatch) => {
+    const res = await axios.post("http://localhost:3004/ka", data);
+    dispatch(addBill(res.data));
+  };
+};
+
+export { fetchBillList, addBillRequest };
 
 const billReducer = billStore.reducer;
 
