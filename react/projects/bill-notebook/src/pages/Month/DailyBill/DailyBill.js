@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import { billTypeToName } from "@/constants/BillName";
 import classNames from "classnames";
 import { useState } from "react";
@@ -32,7 +33,10 @@ const DailyBill = ({ date, income, pay, left, bills }) => {
             return (
               <div className="bill" key={item.id}>
                 <div className="detail">
-                  <div className="billType">{billTypeToName[item.useFor]}</div>
+                  <div className="billType">
+                    <Icon type={item.useFor} />
+                    {billTypeToName[item.useFor]}
+                  </div>
                 </div>
                 <div className={classNames("money", item.type)}>
                   {item.money.toFixed(2)}
