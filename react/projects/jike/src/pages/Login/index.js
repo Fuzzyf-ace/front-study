@@ -1,16 +1,27 @@
-import { Card, Form, Input, Button } from "antd";
+import { Card, Form, Input, Button, message } from "antd";
 import React from "react";
 import logo from "@/assets/logo.png";
 import "./index.scss";
+import { sendLoginRequest } from "@/store/modules/userStore";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onFinish = (data) => {
+    dispatch(sendLoginRequest(data)).then(() => {
+      navigate("/");
+      message.success("登录成功");
+    });
+  };
   return (
     <div className="login">
       <Card className="login-container">
         <img className="login-logo" src={logo} alt="" />
         {/* 登录表单 */}
-        <Form validateTrigger="onBlur" onFinish={console.log}>
+        <Form validateTrigger="onBlur" onFinish={onFinish}>
           <Form.Item
-            name={"phone"}
+            name={"mobile"}
             rules={[
               {
                 required: true,
@@ -25,7 +36,7 @@ const Login = () => {
             <Input size="large" placeholder="请输入手机号" />
           </Form.Item>
           <Form.Item
-            name={"token"}
+            name={"code"}
             rules={[
               {
                 required: true,
