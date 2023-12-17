@@ -6,14 +6,14 @@ const AuthProvider = ({ children }) => {
   // if token is not present, we redirect to login page
   //we should implement a better solution to check if user identity is valid
   const authenticated = token ? true : false;
-  if (!authenticated) {
-    return <Navigate to="/login" />;
-  }
-  // if token is present, we redirect to home page
-  if (children.type.name === "Login") {
+  // if token is present, we redirect login to home page
+  if (children.type.name === "Login" && authenticated) {
     return <Navigate to="/" />;
   }
-  // if token is present, we access the children
+  // if token is not present, we redirect other pages to login page
+  if (children.type.name !== "Login" && !authenticated) {
+    return <Navigate to="/login" />;
+  }
   return children;
 };
 

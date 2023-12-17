@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../pages/Layout";
 import Login from "../pages/Login";
 import { AuthProvider } from "./auth";
+import Home from "@/pages/Home";
+import Article from "@/pages/Article";
+import Publish from "@/pages/Publish";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +14,24 @@ const router = createBrowserRouter([
         <Layout />
       </AuthProvider>
     ),
-    errorElement: <div>404</div>,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/article",
+        element: <Article />,
+      },
+      {
+        path: "/publish",
+        element: <Publish />,
+      },
+    ],
   },
   {
     path: "/login",
