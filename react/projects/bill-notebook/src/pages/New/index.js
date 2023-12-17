@@ -76,7 +76,8 @@ const New = () => {
             <div className="kaInput">
               <Input
                 className="input"
-                onChange={(value) => setMoney(value)}
+                //the value of input is string
+                onChange={(value) => setMoney(parseInt(value))}
                 placeholder="0.00"
                 type="number"
                 value={money}
