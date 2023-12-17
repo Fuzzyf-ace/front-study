@@ -1,16 +1,16 @@
-import { http } from "@/utils";
+import { getToken, http, setToken as persistToken } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const userStore = createSlice({
   name: "user",
   initialState: {
-    token: localStorage.getItem("token") || "",
+    token: getToken() || "",
   },
   reducers: {
     setToken(state, action) {
       state.token = action.payload;
       // token persistence
-      localStorage.setItem("token", action.payload);
+      persistToken(action.payload);
     },
   },
 });
