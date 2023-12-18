@@ -28,15 +28,24 @@ const { setToken, setUserInfo, logOut } = userStore.actions;
 
 const sendLoginRequest = (data) => {
   return async (dispatch) => {
-    const res = await http.post("/authorizations", data);
-    dispatch(setToken(res.data.token));
+    try {
+      const res = await http.post("/authorizations", data);
+      dispatch(setToken(res.data.token));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
 const sendUserInfoRequest = () => {
   return async (dispatch) => {
-    const res = await http.get("/user/profile");
-    dispatch(setUserInfo(res.data));
+    try {
+      const res = await http.get("/user/profile");
+      const userInfo = res.data;
+      dispatch(setUserInfo(userInfo));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 

@@ -4,15 +4,18 @@ import logo from "@/assets/logo.png";
 import "./index.scss";
 import { sendLoginRequest } from "@/store/modules/userStore";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import router from "@/router";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const onFinish = (data) => {
-    dispatch(sendLoginRequest(data)).then(() => {
-      navigate("/");
-      message.success("登录成功");
-    });
+    dispatch(sendLoginRequest(data))
+      .then(() => {
+        message.success("登录成功");
+        router.navigate("/");
+      })
+      .catch((error) => {
+        message.error(error.response.data.message);
+      });
   };
   return (
     <div className="login">

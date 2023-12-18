@@ -1,4 +1,4 @@
-import { Layout, Menu, Popconfirm } from "antd";
+import { Layout, Menu, Popconfirm, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
   HomeOutlined,
@@ -47,7 +47,9 @@ const GeekLayout = () => {
 
   const userInfo = useSelector((state) => state.user.userInfo);
   useEffect(() => {
-    dispatch(sendUserInfoRequest());
+    dispatch(sendUserInfoRequest()).catch((error) => {
+      message.error(error.response.data.message);
+    });
   }, [dispatch]);
   const handleConfirmQuit = () => {
     dispatch(logOut());
