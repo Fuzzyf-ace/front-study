@@ -29,9 +29,11 @@ function App() {
     <div className="App">
       <button onClick={() => setNumber(number + 1)}>+</button>
       {number}
+      {/* this will not be calculated every time the app rerender */}
       <SonComponentWithMemo onClick={useCallbackClickHandler}>
         useCallbackClickHandler
       </SonComponentWithMemo>
+      {/* this will be calculated every time the app rerender */}
       <SonComponentWithMemo onClick={clickHanlder}>
         clickHanlder
       </SonComponentWithMemo>
