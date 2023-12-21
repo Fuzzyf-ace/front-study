@@ -5,7 +5,7 @@
 // 1. primitive values: ===
 // 2. reference values: shallow comparison, if any reference value is changed, it will be rerendered
 
-import React, { memo, useState } from "react";
+import React, { memo, useState, useMemo } from "react";
 
 const SonComponent = () => {
   console.log("sonComponen without memo wrapped is rerendered");
@@ -17,7 +17,7 @@ const SonComponent = () => {
 };
 
 const SonComponentMemo = memo((props) => {
-  console.log("sonComponen with memo wrapped is rerendered");
+  console.log("sonComponen with memo wrapped is rerendered", props.number);
   return (
     <div>
       <p>SonComponentMemo props:{props.number}</p>
@@ -28,6 +28,10 @@ const SonComponentMemo = memo((props) => {
 function App() {
   const [number, setNumber] = useState(0);
   console.log("app is rerendered");
+  const memoizedValue = useMemo(() => {
+    return [4, 5, 6];
+  }, []);
+  const unMemoizedValue = [1, 2, 3];
   return (
     <div className="App">
       <button onClick={() => setNumber(number + 1)}>+</button>
@@ -35,6 +39,9 @@ function App() {
       <SonComponent />
       <SonComponentMemo />
       <SonComponentMemo number={number} />
+      {/* for unMemoizedValue the virtual dom will be recaculated, however, for the real dom, it will not be repainted*/}
+      <SonComponentMemo number={unMemoizedValue} />
+      <SonComponentMemo number={memoizedValue} />
     </div>
   );
 }
