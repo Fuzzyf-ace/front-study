@@ -1,5 +1,10 @@
 // https://react.dev/reference/react/memo
 //memo lets you skip re-rendering a component when its props are unchanged.
+
+// props comparison rules:
+// 1. primitive values: ===
+// 2. reference values: shallow comparison, if any reference value is changed, it will be rerendered
+
 import React, { memo, useState } from "react";
 
 const SonComponent = () => {
