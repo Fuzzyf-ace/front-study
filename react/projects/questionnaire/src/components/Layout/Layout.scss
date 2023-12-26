@@ -1,0 +1,22 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  .header {
+  }
+  .main {
+    flex: auto;
+    display: flex;
+    flex-direction: row;
+    .left {
+      //   flex: 1;
+    }
+    .center {
+      flex: auto;
+    }
+    .right {
+      //   flex: 1;
+    }
+  }
+}

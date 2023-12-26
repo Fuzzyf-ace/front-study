@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.layout .main {
+  flex: auto;
+  display: flex;
+  flex-direction: row;
+}
+.layout .main .center {
+  flex: auto;
+}/*# sourceMappingURL=Layout.css.map */
