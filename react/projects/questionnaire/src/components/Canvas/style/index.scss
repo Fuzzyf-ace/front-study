@@ -1,0 +1,12 @@
+$base-padding: 1rem;
+$base-margin: 1rem;
+$border-color: aqua;
+
+.question {
+  padding: $base-padding;
+  margin: $base-margin;
+
+  &.selected {
+    border: 1px solid $border-color;
+  }
+}

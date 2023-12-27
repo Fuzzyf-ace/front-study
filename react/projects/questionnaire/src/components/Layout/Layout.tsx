@@ -4,7 +4,10 @@ import Canvas from "../Canvas";
 import { useDispatch, useSelector } from "react-redux";
 import { Questionnaire } from "../../model/questionnaire";
 import { RootState } from "../../store";
-import { fetchQuestionnaire } from "../../store/modules/questionnaireStore";
+import {
+  fetchQuestionnaire,
+  setSelectedQuestion,
+} from "../../store/modules/questionnaireStore";
 import { Question } from "../../model/question";
 import { Typography } from "antd";
 import LeftSider from "../LeftSider/LeftSider";
@@ -14,14 +17,6 @@ import RightSider from "../RightSider/RightSider";
  * @param question
  * @returns different components based on questionType
  */
-const questionMap: FC<Question> = (question: Question) => {
-  if (question.questionType === "Title") {
-    return (
-      <Canvas.Title key={question.id} title={question.questionProps.title} />
-    );
-  }
-  return <div key={question.id}>Unknown question type</div>;
-};
 
 const Layout: FC = () => {
   const questionnaire: Questionnaire = useSelector(
@@ -33,6 +28,22 @@ const Layout: FC = () => {
   }, []);
 
   const questions: Question[] = questionnaire.questions;
+  const selectedQuestion: Question = useSelector(
+    (state: RootState) => state.questionnaire.selectedQuestion
+  );
+
+  const questionMap: FC<Question> = (question: Question) => {
+    if (question?.questionType === "Title") {
+      return (
+        <Canvas.Title
+          key={question.id}
+          id={question.id}
+          title={question.questionProps.title}
+        />
+      );
+    }
+    return <div key={question?.id}>Unknown question type</div>;
+  };
 
   return (
     <div className="layout">

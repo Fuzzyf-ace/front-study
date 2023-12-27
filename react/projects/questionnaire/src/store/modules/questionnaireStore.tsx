@@ -8,6 +8,11 @@ type ActionType = {
   type: string;
 };
 
+const DEFAULT_QUESTIONNAIRE: Questionnaire = {
+  title: "Questionnaire",
+  description: "This is a questionnaire",
+  questions: [],
+};
 // static data
 const questionnaire: Questionnaire = {
   title: "Questionnaire",
@@ -21,13 +26,22 @@ const questionnaire: Questionnaire = {
         level: 1,
       },
     },
+    {
+      id: uuidv4(),
+      questionType: "Title",
+      questionProps: {
+        title: "this is a level 2 Title",
+        level: 2,
+      },
+    },
   ],
 };
 
 const questionnaireStore = createSlice({
   name: "questionnaire",
   initialState: {
-    questionnaire: questionnaire,
+    questionnaire: DEFAULT_QUESTIONNAIRE,
+    selectedQuestion: null as Question,
   },
   reducers: {
     addQuestion: (state, action: ActionType) => {
@@ -35,10 +49,21 @@ const questionnaireStore = createSlice({
     },
     fetchQuestionnaire: (state) => {
       state.questionnaire = questionnaire;
+      state.selectedQuestion = questionnaire.questions[0];
+    },
+    setSelectedQuestion: (state, action) => {
+      const id = action.payload;
+      const question = state.questionnaire.questions.find(
+        (question) => question?.id === id
+      );
+      if (question) {
+        state.selectedQuestion = question;
+      }
     },
   },
 });
 
-export const { addQuestion, fetchQuestionnaire } = questionnaireStore.actions;
+export const { addQuestion, fetchQuestionnaire, setSelectedQuestion } =
+  questionnaireStore.actions;
 
 export default questionnaireStore.reducer;
