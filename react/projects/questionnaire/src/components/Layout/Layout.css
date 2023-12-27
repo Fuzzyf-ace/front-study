@@ -3,14 +3,43 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+  background-color: rgb(222, 216, 216);
+}
+.layout .header {
+  background-color: white;
 }
 .layout .main {
   flex: auto;
   display: flex;
   flex-direction: row;
 }
+.layout .main .left-sider {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  width: min(250px, 100vw - 100px);
+}
 .layout .main .center {
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.layout .main .center .canvas {
+  background-color: white;
+  width: min(600px, 100vw - 100px);
+  height: min(700px, 100vh - 100px);
+  overflow: scroll;
+}
+.layout .main .right-sider {
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  width: min(250px, 100vw - 100px);
+}
+.layout .footer {
+  background-color: white;
 }
 
 /*# sourceMappingURL=Layout.css.map */
