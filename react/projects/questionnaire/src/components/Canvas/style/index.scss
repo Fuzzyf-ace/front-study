@@ -4,7 +4,7 @@ $border-color: blue;
 
 .question {
   padding: $base-padding;
-  margin: $base-margin;
+  margin: 0 $base-margin 0 $base-margin;
   border: 1px solid transparent;
   cursor: pointer;
   &.selected {
