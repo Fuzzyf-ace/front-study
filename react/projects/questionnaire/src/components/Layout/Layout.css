@@ -12,12 +12,16 @@
   flex: auto;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .layout .main .left-sider {
   background-color: white;
+  position: relative;
   margin: 20px;
   padding: 10px;
-  width: min(250px, 100vw - 100px);
+  width: min(450px, 100vw - 100px);
+  height: min(700px, 100vh - 150px);
 }
 .layout .main .center {
   flex: auto;
@@ -29,14 +33,16 @@
 .layout .main .center .canvas {
   background-color: white;
   width: min(600px, 100vw - 100px);
-  height: min(700px, 100vh - 100px);
+  height: min(700px, 100vh - 150px);
   overflow: scroll;
 }
 .layout .main .right-sider {
   background-color: white;
   margin: 20px;
   padding: 10px;
-  width: min(250px, 100vw - 100px);
+  width: min(300px, 100vw - 100px);
+  height: min(700px, 100vh - 150px);
+  overflow: scroll;
 }
 .layout .footer {
   background-color: white;

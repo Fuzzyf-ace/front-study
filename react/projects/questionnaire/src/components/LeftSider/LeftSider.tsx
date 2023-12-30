@@ -3,12 +3,13 @@ import { Tabs } from "antd";
 import type { TabsProps } from "antd";
 
 import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
+import ComponentPackage from "./ComponentPackage/ComponentPackage";
 const items: TabsProps["items"] = [
   {
     key: "1",
     label: "组件库",
     icon: <AppstoreOutlined />,
-    children: "组件库",
+    children: <ComponentPackage />,
   },
   {
     key: "2",
@@ -21,7 +22,14 @@ const items: TabsProps["items"] = [
 const LeftSider: FC = () => {
   return (
     <div className="left-sider">
-      <Tabs defaultActiveKey="1" items={items} />
+      <Tabs
+        defaultActiveKey="1"
+        items={items}
+        style={{
+          height: "100%",
+          position: "relative",
+        }}
+      />
     </div>
   );
 };

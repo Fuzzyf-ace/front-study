@@ -1,9 +1,11 @@
 .question {
   padding: 1rem;
   margin: 1rem;
+  border: 1px solid transparent;
 }
 .question.selected {
-  border: 1px solid aqua;
+  border: 1px solid blue;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,18 @@
+.component {
+  background-color: #99999950;
+  flex: auto;
+  padding: 1rem;
+  &:hover {
+    background-color: #99999980;
+    cursor: pointer;
+  }
+  &.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+.ant-tabs-content,
+.ant-tabs-tabpane {
+  height: 100%;
+}
