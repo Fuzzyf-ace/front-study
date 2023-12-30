@@ -33,9 +33,8 @@ const inputComponents = [
           placeholder="TextInput"
           style={{
             border: "none",
-            cursor: "pointer",
+            pointerEvents: "none",
           }}
-          readOnly={true}
         />
       </div>
     ),
@@ -49,7 +48,7 @@ const inputComponents = [
           placeholder="ParagraphInput"
           style={{
             border: "none",
-            cursor: "pointer",
+            pointerEvents: "none",
           }}
           readOnly={true}
         />

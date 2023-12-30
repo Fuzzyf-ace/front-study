@@ -2,6 +2,7 @@
   padding: 1rem;
   margin: 1rem;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 .question.selected {
   border: 1px solid blue;
