@@ -29,7 +29,6 @@ const inputComponents = [
     label: "TextInput",
     children: (
       <div className="component">
-        <div>Your Question Here</div>
         <Input
           placeholder="TextInput"
           style={{
@@ -46,7 +45,6 @@ const inputComponents = [
     label: "ParagraphInput",
     children: (
       <div className="component">
-        <div>Your Question Here</div>
         <Input.TextArea
           placeholder="ParagraphInput"
           style={{
@@ -62,9 +60,8 @@ const inputComponents = [
     key: "3",
     label: "RadioInput",
     children: (
-      <div className="component">
-        <div>Your Question Here</div>
-        <Radio.Group>
+      <div className="component" onClick={() => console.log("add radio")}>
+        <Radio.Group style={{ pointerEvents: "none" }}>
           <Radio value={1}>Option 1</Radio>
           <Radio value={2}>Option 2</Radio>
           <Radio value={3}>Option 3</Radio>
@@ -79,6 +76,7 @@ const inputComponents = [
     children: (
       <div className="component">
         <Checkbox.Group
+          style={{ pointerEvents: "none" }}
           options={[
             { label: "Option 1", value: "1" },
             { label: "Option 2", value: "2" },
