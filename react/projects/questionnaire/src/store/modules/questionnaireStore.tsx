@@ -30,8 +30,8 @@ const questionnaire: Questionnaire = {
       id: uuidv4(),
       questionType: "Title",
       questionProps: {
-        title: "this is a level 2 Title",
-        level: 2,
+        title: "this is a level 5 Title",
+        level: 5,
       },
     },
   ],
@@ -60,10 +60,27 @@ const questionnaireStore = createSlice({
         state.selectedQuestion = question;
       }
     },
+    editQuestionProps: (state, action) => {
+      const { id, props } = action.payload;
+      const question = state.questionnaire.questions.find(
+        (question) => question?.id === id
+      );
+      if (question) {
+        question.questionProps = {
+          ...question.questionProps,
+          ...props,
+        };
+        state.selectedQuestion = question;
+      }
+    },
   },
 });
 
-export const { addQuestion, fetchQuestionnaire, setSelectedQuestion } =
-  questionnaireStore.actions;
+export const {
+  addQuestion,
+  fetchQuestionnaire,
+  setSelectedQuestion,
+  editQuestionProps,
+} = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;

@@ -4,14 +4,12 @@ import Canvas from "../Canvas";
 import { useDispatch, useSelector } from "react-redux";
 import { Questionnaire } from "../../model/questionnaire";
 import { RootState } from "../../store";
-import {
-  fetchQuestionnaire,
-  setSelectedQuestion,
-} from "../../store/modules/questionnaireStore";
+import { fetchQuestionnaire } from "../../store/modules/questionnaireStore";
 import { Question } from "../../model/question";
 import { Typography } from "antd";
 import LeftSider from "../LeftSider/LeftSider";
 import RightSider from "../RightSider/RightSider";
+import { TitleProps } from "../Canvas/Title";
 /**
  *
  * @param question
@@ -25,20 +23,19 @@ const Layout: FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchQuestionnaire());
-  }, []);
+  }, [dispatch]);
 
   const questions: Question[] = questionnaire.questions;
-  const selectedQuestion: Question = useSelector(
-    (state: RootState) => state.questionnaire.selectedQuestion
-  );
 
   const questionMap: FC<Question> = (question: Question) => {
     if (question?.questionType === "Title") {
+      const titleProps = question.questionProps as TitleProps;
       return (
         <Canvas.Title
           key={question.id}
           id={question.id}
-          title={question.questionProps.title}
+          title={titleProps.title}
+          level={titleProps.level}
         />
       );
     }

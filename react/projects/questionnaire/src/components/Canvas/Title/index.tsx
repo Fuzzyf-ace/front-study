@@ -6,12 +6,21 @@ import { setSelectedQuestion } from "../../../store/modules/questionnaireStore";
 import { RootState } from "../../../store";
 import classnames from "classnames";
 import "../style/index.css";
-type Props = {
+
+export enum TitleLevel {
+  H1 = 1,
+  H2,
+  H3,
+  H4,
+  H5,
+}
+export type TitleProps = {
   id: string;
   title: string;
-  level?: 1 | 2 | 3 | 4 | 5;
+  level?: TitleLevel;
 };
-const Title: FC<Props> = ({ title, level = 1, id }: Props) => {
+
+const Title: FC<TitleProps> = ({ title, level = 1, id }: TitleProps) => {
   const dispatch = useDispatch();
 
   const onclickHandler = () => {
@@ -22,7 +31,6 @@ const Title: FC<Props> = ({ title, level = 1, id }: Props) => {
     (state: RootState) => state.questionnaire.selectedQuestion
   );
   const selectedId = selectedQuestion?.id;
-
   return (
     <div className={classnames("question", { selected: selectedId === id })}>
       <Typography.Title level={level} onClick={onclickHandler}>
