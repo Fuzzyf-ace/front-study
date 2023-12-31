@@ -4,6 +4,7 @@ import type { TabsProps } from "antd";
 
 import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
 import ComponentPackage from "./ComponentPackage/ComponentPackage";
+import QuestionsMenu from "./QuestionsMenu/QuestionsMenu";
 const items: TabsProps["items"] = [
   {
     key: "1",
@@ -15,7 +16,7 @@ const items: TabsProps["items"] = [
     key: "2",
     label: "图层",
     icon: <BarsOutlined />,
-    children: "图层",
+    children: <QuestionsMenu />,
   },
 ];
 

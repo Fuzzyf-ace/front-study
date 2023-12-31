@@ -32,10 +32,11 @@ const Title: FC<TitleProps> = ({ title, level = 1, id }: TitleProps) => {
   );
   const selectedId = selectedQuestion?.id;
   return (
-    <div className={classnames("question", { selected: selectedId === id })}>
-      <Typography.Title level={level} onClick={onclickHandler}>
-        {title}
-      </Typography.Title>
+    <div
+      className={classnames("question", { selected: selectedId === id })}
+      onClick={onclickHandler}
+    >
+      <Typography.Title level={level}>{title}</Typography.Title>
     </div>
   );
 };
