@@ -7,6 +7,7 @@
 }
 .layout .header {
   background-color: white;
+  padding-left: 1rem;
 }
 .layout .main {
   flex: auto;
@@ -22,6 +23,7 @@
   padding: 10px;
   width: min(450px, 100vw - 100px);
   height: min(700px, 100vh - 150px);
+  border-radius: 10px;
 }
 .layout .main .center {
   flex: auto;
@@ -35,6 +37,8 @@
   width: min(600px, 100vw - 100px);
   height: min(700px, 100vh - 150px);
   overflow: scroll;
+  border-radius: 10px;
+  padding: 1rem;
 }
 .layout .main .right-sider {
   background-color: white;
@@ -43,9 +47,11 @@
   width: min(300px, 100vw - 100px);
   height: min(700px, 100vh - 150px);
   overflow: scroll;
+  border-radius: 10px;
 }
 .layout .footer {
   background-color: white;
+  padding-left: 1rem;
 }
 
 /*# sourceMappingURL=Layout.css.map */

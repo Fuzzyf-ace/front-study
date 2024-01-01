@@ -73,6 +73,22 @@ const questionnaireStore = createSlice({
         state.selectedQuestion = question;
       }
     },
+    toggleLockSelectedQuestion: (state) => {
+      if (state.selectedQuestion) {
+        const question = state.questionnaire.questions.find(
+          (question) => question?.id === state.selectedQuestion?.id
+        );
+        if (question) {
+          if (state.selectedQuestion.locked) {
+            state.selectedQuestion.locked = false;
+            question.locked = false;
+          } else {
+            state.selectedQuestion.locked = true;
+            question.locked = true;
+          }
+        }
+      }
+    },
   },
 });
 
@@ -81,6 +97,7 @@ export const {
   fetchQuestionnaire,
   setSelectedQuestion,
   editQuestionProps,
+  toggleLockSelectedQuestion,
 } = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;

@@ -18,9 +18,15 @@ export type TitleProps = {
   id: string;
   title: string;
   level?: TitleLevel;
+  disabled?: boolean;
 };
 
-const Title: FC<TitleProps> = ({ title, level = 1, id }: TitleProps) => {
+const Title: FC<TitleProps> = ({
+  title,
+  level = 1,
+  id,
+  disabled,
+}: TitleProps) => {
   const dispatch = useDispatch();
 
   const onclickHandler = () => {
@@ -36,7 +42,9 @@ const Title: FC<TitleProps> = ({ title, level = 1, id }: TitleProps) => {
       className={classnames("question", { selected: selectedId === id })}
       onClick={onclickHandler}
     >
-      <Typography.Title level={level}>{title}</Typography.Title>
+      <Typography.Title level={level} disabled={disabled}>
+        {title}
+      </Typography.Title>
     </div>
   );
 };

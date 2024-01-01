@@ -10,6 +10,7 @@ import { Typography } from "antd";
 import LeftSider from "../LeftSider/LeftSider";
 import RightSider from "../RightSider/RightSider";
 import { TitleProps } from "../Canvas/Title";
+import Header from "../Header/Header";
 /**
  *
  * @param question
@@ -36,6 +37,7 @@ const Layout: FC = () => {
           id={question.id}
           title={titleProps.title}
           level={titleProps.level}
+          disabled={question.locked}
         />
       );
     }
@@ -44,9 +46,7 @@ const Layout: FC = () => {
 
   return (
     <div className="layout">
-      <div className="header">
-        <Typography.Title level={3}>{questionnaire.title}</Typography.Title>
-      </div>
+      <Header />
       <div className="main">
         <LeftSider />
         <div className="center">
@@ -56,7 +56,9 @@ const Layout: FC = () => {
         </div>
         <RightSider />
       </div>
-      <div className="footer">Footer</div>
+      <div className="footer">
+        <Typography.Text type="secondary">Questionnaire Demo</Typography.Text>
+      </div>
     </div>
   );
 };

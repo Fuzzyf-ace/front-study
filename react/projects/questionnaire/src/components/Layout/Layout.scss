@@ -6,6 +6,7 @@
   background-color: rgb(222, 216, 216);
   .header {
     background-color: white;
+    padding-left: 1rem;
   }
   .main {
     flex: auto;
@@ -20,6 +21,7 @@
       padding: 10px;
       width: min(450px, calc(100vw - 100px));
       height: min(700px, calc(100vh - 150px));
+      border-radius: 10px;
     }
     .center {
       flex: auto;
@@ -32,6 +34,8 @@
         width: min(600px, calc(100vw - 100px));
         height: min(700px, calc(100vh - 150px));
         overflow: scroll;
+        border-radius: 10px;
+        padding: 1rem;
       }
     }
     .right-sider {
@@ -41,9 +45,11 @@
       width: min(300px, calc(100vw - 100px));
       height: min(700px, calc(100vh - 150px));
       overflow: scroll;
+      border-radius: 10px;
     }
   }
   .footer {
     background-color: white;
+    padding-left: 1rem;
   }
 }

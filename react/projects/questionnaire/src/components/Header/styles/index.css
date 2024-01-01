@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  flex-direction: row;
+}
+.header .header-start {
+  flex: 1;
+}
+.header .header-center {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .header-end {
+  flex: 1;
+}
+
+/*# sourceMappingURL=index.css.map */

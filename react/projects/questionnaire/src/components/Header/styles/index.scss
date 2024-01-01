@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: row;
+
+  .header-start {
+    flex: 1;
+  }
+  .header-center {
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-end {
+    flex: 1;
+  }
+}

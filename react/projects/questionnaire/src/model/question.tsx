@@ -8,6 +8,8 @@ type Question = {
   id: string;
   questionType: QuestionTypes;
   questionProps: QuestionPropTypes;
+  locked?: boolean;
+  hidden?: boolean;
 } | null;
 
 type QuestionComponentTypes = typeof Canvas.Title;

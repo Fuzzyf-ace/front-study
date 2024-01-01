@@ -18,10 +18,10 @@ const EditProps: FC = () => {
         return (
           <div>
             <div style={{ display: "flex", alignItems: "baseline" }}>
-              <div>Title: &nbsp; </div>
-
+              <div>Title: </div>
               <Input
-                style={{ flex: "auto" }}
+                style={{ flex: "auto", margin: "0 0 0 10px" }}
+                disabled={selectedQuestion?.locked}
                 value={titleProps.title}
                 onChange={(e) =>
                   dispatch(
@@ -33,12 +33,19 @@ const EditProps: FC = () => {
                 }
               />
             </div>
-            <div style={{ display: "flex", alignItems: "baseline" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                margin: "10px 0 0 0 ",
+              }}
+            >
               <div>Title Level:&nbsp;</div>
               <Select
                 title="Title Level"
-                style={{ flex: "auto" }}
+                style={{ flex: "auto", margin: "0 0 0 10px" }}
                 value={titleProps.level}
+                disabled={selectedQuestion?.locked}
                 options={Object.keys(TitleLevel)
                   .filter((key) => !isNaN(Number(key))) // filter out the enum names
                   .map((key) => {
