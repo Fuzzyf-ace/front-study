@@ -89,6 +89,23 @@ const questionnaireStore = createSlice({
         }
       }
     },
+    deleteSelectedQuestion: (state) => {
+      if (state.selectedQuestion) {
+        const index = state.questionnaire.questions.findIndex(
+          (question) => question?.id === state.selectedQuestion?.id
+        );
+        if (index > -1) {
+          if (index + 1 < state.questionnaire.questions.length) {
+            state.selectedQuestion = state.questionnaire.questions[index + 1];
+            console.log("go next", state.questionnaire.questions[index + 1]);
+          } else {
+            state.selectedQuestion = state.questionnaire.questions[index - 1];
+            console.log("go prev", state.questionnaire.questions[index - 1]);
+          }
+          state.questionnaire.questions.splice(index, 1);
+        }
+      }
+    },
   },
 });
 
@@ -98,6 +115,7 @@ export const {
   setSelectedQuestion,
   editQuestionProps,
   toggleLockSelectedQuestion,
+  deleteSelectedQuestion,
 } = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;

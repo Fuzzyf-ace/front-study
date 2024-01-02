@@ -11,7 +11,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { Question } from "../../../model/question";
-import { toggleLockSelectedQuestion } from "../../../store/modules/questionnaireStore";
+import {
+  deleteSelectedQuestion,
+  toggleLockSelectedQuestion,
+} from "../../../store/modules/questionnaireStore";
 
 const EditToolBar: FC = () => {
   const selectedQuestion: Question = useSelector(
@@ -31,7 +34,13 @@ const EditToolBar: FC = () => {
         />
       </Tooltip>
       <Tooltip title={"delete"}>
-        <Button shape="circle" icon={<DeleteOutlined />} />
+        <Button
+          shape="circle"
+          icon={<DeleteOutlined />}
+          onClick={() => {
+            dispatch(deleteSelectedQuestion());
+          }}
+        />
       </Tooltip>
       <Tooltip title={"copy"}>
         <Button shape="circle" icon={<CopyOutlined />} />
