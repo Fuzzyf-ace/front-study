@@ -106,6 +106,19 @@ const questionnaireStore = createSlice({
         }
       }
     },
+    copySelectedQuestion: (state) => {
+      if (state.selectedQuestion) {
+        const index = state.questionnaire.questions.findIndex(
+          (question) => question?.id === state.selectedQuestion?.id
+        );
+        if (index > -1) {
+          const question = state.questionnaire.questions[index];
+          const newQuestion = JSON.parse(JSON.stringify(question)); //also can use lodash.cloneDeep(question);
+          newQuestion.id = uuidv4();
+          state.questionnaire.questions.splice(index + 1, 0, newQuestion);
+        }
+      }
+    },
   },
 });
 
@@ -116,6 +129,7 @@ export const {
   editQuestionProps,
   toggleLockSelectedQuestion,
   deleteSelectedQuestion,
+  copySelectedQuestion,
 } = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;

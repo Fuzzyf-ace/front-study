@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { Question } from "../../../model/question";
 import {
+  copySelectedQuestion,
   deleteSelectedQuestion,
   toggleLockSelectedQuestion,
 } from "../../../store/modules/questionnaireStore";
@@ -43,10 +44,13 @@ const EditToolBar: FC = () => {
         />
       </Tooltip>
       <Tooltip title={"copy"}>
-        <Button shape="circle" icon={<CopyOutlined />} />
-      </Tooltip>
-      <Tooltip title={"paste"}>
-        <Button shape="circle" icon={<BlockOutlined />} />
+        <Button
+          shape="circle"
+          icon={<CopyOutlined />}
+          onClick={() => {
+            dispatch(copySelectedQuestion());
+          }}
+        />
       </Tooltip>
       <Tooltip title={"hide"}>
         <Button
