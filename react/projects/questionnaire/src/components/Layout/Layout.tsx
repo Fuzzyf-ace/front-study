@@ -31,6 +31,9 @@ const Layout: FC = () => {
   const questionMap: FC<Question> = (question: Question) => {
     if (question?.questionType === "Title") {
       const titleProps = question.questionProps as TitleProps;
+      if (question.hidden) {
+        return null;
+      }
       return (
         <Canvas.Title
           key={question.id}

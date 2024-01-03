@@ -7,6 +7,7 @@ import {
   LockOutlined,
   UnlockOutlined,
   EyeInvisibleOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
@@ -14,6 +15,7 @@ import { Question } from "../../../model/question";
 import {
   copySelectedQuestion,
   deleteSelectedQuestion,
+  toggleHideSelectedQuestion,
   toggleLockSelectedQuestion,
 } from "../../../store/modules/questionnaireStore";
 
@@ -55,7 +57,10 @@ const EditToolBar: FC = () => {
       <Tooltip title={"hide"}>
         <Button
           shape="circle"
-          icon={<EyeInvisibleOutlined disabled={selectedQuestion?.hidden} />}
+          icon={<EyeInvisibleOutlined />}
+          onClick={() => {
+            dispatch(toggleHideSelectedQuestion());
+          }}
         />
       </Tooltip>
     </Space>

@@ -95,13 +95,7 @@ const questionnaireStore = createSlice({
           (question) => question?.id === state.selectedQuestion?.id
         );
         if (index > -1) {
-          if (index + 1 < state.questionnaire.questions.length) {
-            state.selectedQuestion = state.questionnaire.questions[index + 1];
-          } else if (index - 1 > -1) {
-            state.selectedQuestion = state.questionnaire.questions[index - 1];
-          } else {
-            state.selectedQuestion = null;
-          }
+          selectTheNextAvailableQuestion();
           state.questionnaire.questions.splice(index, 1);
         }
       }
@@ -119,6 +113,38 @@ const questionnaireStore = createSlice({
         }
       }
     },
+    selectTheNextAvailableQuestion: (state) => {
+      const index = state.questionnaire.questions.findIndex(
+        (question) => question?.id === state.selectedQuestion?.id
+      );
+      if (index > -1) {
+        if (index + 1 < state.questionnaire.questions.length) {
+          state.selectedQuestion = state.questionnaire.questions[index + 1];
+        } else if (index - 1 > -1) {
+          state.selectedQuestion = state.questionnaire.questions[index - 1];
+        } else {
+          state.selectedQuestion = null;
+        }
+      }
+    },
+    toggleHideSelectedQuestion: (state) => {
+      if (state.selectedQuestion) {
+        const question = state.questionnaire.questions.find(
+          (question) => question?.id === state.selectedQuestion?.id
+        );
+        if (question && !question.locked) {
+          console.log("toggleHideSelectedQuestion");
+          if (state.selectedQuestion.hidden) {
+            state.selectedQuestion.hidden = false;
+            question.hidden = false;
+          } else {
+            state.selectedQuestion.hidden = true;
+            selectTheNextAvailableQuestion();
+            question.hidden = true;
+          }
+        }
+      }
+    },
   },
 });
 
@@ -129,7 +155,9 @@ export const {
   editQuestionProps,
   toggleLockSelectedQuestion,
   deleteSelectedQuestion,
+  selectTheNextAvailableQuestion,
   copySelectedQuestion,
+  toggleHideSelectedQuestion,
 } = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;
