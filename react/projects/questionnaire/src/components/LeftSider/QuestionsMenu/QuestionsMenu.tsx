@@ -54,14 +54,8 @@ const QuestionsMenu: FC = () => {
                       <Tooltip title={question.hidden ? "show" : "hide"}>
                         <Button
                           shape="circle"
-                          icon={
-                            question.hidden ? (
-                              <EyeOutlined />
-                            ) : (
-                              <EyeInvisibleOutlined />
-                            )
-                          }
-                          disabled={selectedQuestionId !== question.id}
+                          icon={<EyeInvisibleOutlined />}
+                          type={question.hidden ? "primary" : "default"}
                           onClick={() => {
                             dispatch(toggleHideSelectedQuestion());
                           }}

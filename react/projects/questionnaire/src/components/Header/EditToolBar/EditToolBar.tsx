@@ -31,6 +31,7 @@ const EditToolBar: FC = () => {
         <Button
           shape="circle"
           icon={locked ? <UnlockOutlined /> : <LockOutlined />}
+          type={locked ? "primary" : "default"}
           onClick={() => {
             dispatch(toggleLockSelectedQuestion());
           }}
