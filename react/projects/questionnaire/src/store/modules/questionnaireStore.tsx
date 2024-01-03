@@ -51,6 +51,18 @@ const questionnaireStore = createSlice({
   name: "questionnaire",
   initialState: INIT_STATE,
   reducers: {
+    editQuestionnaireBasicSettings: (state, action) => {
+      switch (action.payload.type) {
+        case "title":
+          state.questionnaire.title = action.payload.value;
+          break;
+        case "description":
+          state.questionnaire.description = action.payload.value;
+          break;
+        default:
+          break;
+      }
+    },
     addQuestion: (state, action: ActionType) => {
       state.questionnaire.questions.push(action.payload);
     },
@@ -206,6 +218,7 @@ export const {
   copySelectedQuestion,
   toggleHideSelectedQuestion,
   moveQuestion,
+  editQuestionnaireBasicSettings,
 } = questionnaireStore.actions;
 
 export default questionnaireStore.reducer;
