@@ -1,12 +1,25 @@
-import { List } from "antd";
+import { Button, List, Tooltip } from "antd";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Question } from "../../../model/question";
 import { TitleProps } from "../../Canvas/Title";
 import classNames from "classnames";
 import "../styles/index.css";
-import { setSelectedQuestion } from "../../../store/modules/questionnaireStore";
+import {
+  setSelectedQuestion,
+  toggleHideSelectedQuestion,
+} from "../../../store/modules/questionnaireStore";
 import { RootState } from "../../../store";
+import {
+  DeleteOutlined,
+  CopyOutlined,
+  BlockOutlined,
+  LockOutlined,
+  UnlockOutlined,
+  EyeInvisibleOutlined,
+  EyeOutlined,
+  DragOutlined,
+} from "@ant-design/icons";
 const QuestionsMenu: FC = () => {
   const questions = useSelector(
     (state: RootState) => state.questionnaire.questionnaire.questions
@@ -15,7 +28,7 @@ const QuestionsMenu: FC = () => {
     (state: RootState) => state.questionnaire.selectedQuestion?.id
   );
   const dispatch = useDispatch();
-  const onclickHandler = (id: string) => {
+  const onMouseEnterHandler = (id: string) => {
     dispatch(setSelectedQuestion(id));
   };
   return (
@@ -35,9 +48,29 @@ const QuestionsMenu: FC = () => {
                   className={classNames("question-menu-item", {
                     selected: question.id === selectedQuestionId,
                   })}
-                  onClick={() => onclickHandler(question.id)}
+                  onMouseEnter={() => onMouseEnterHandler(question.id)}
+                  actions={[
+                    question.hidden && (
+                      <Tooltip title={question.hidden ? "show" : "hide"}>
+                        <Button
+                          shape="circle"
+                          icon={
+                            question.hidden ? (
+                              <EyeOutlined />
+                            ) : (
+                              <EyeInvisibleOutlined />
+                            )
+                          }
+                          disabled={selectedQuestionId !== question.id}
+                          onClick={() => {
+                            dispatch(toggleHideSelectedQuestion());
+                          }}
+                        />
+                      </Tooltip>
+                    ),
+                  ]}
                 >
-                  {titleProps.title}
+                  <List.Item.Meta title={titleProps.title} />
                 </List.Item>
               );
             default:
