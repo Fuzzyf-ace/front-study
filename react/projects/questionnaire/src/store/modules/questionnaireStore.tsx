@@ -91,16 +91,29 @@ const questionnaireStore = createSlice({
     },
     deleteSelectedQuestion: (state) => {
       if (state.selectedQuestion) {
-        const index = state.questionnaire.questions.findIndex(
+        let index = state.questionnaire.questions.findIndex(
           (question) => question?.id === state.selectedQuestion?.id
         );
         if (index > -1) {
-          if (index + 1 < state.questionnaire.questions.length) {
-            state.selectedQuestion = state.questionnaire.questions[index + 1];
-          } else if (index - 1 > -1) {
-            state.selectedQuestion = state.questionnaire.questions[index - 1];
-          } else {
-            state.selectedQuestion = null;
+          state.selectedQuestion = null;
+          while (index + 1 < state.questionnaire.questions.length) {
+            if (
+              state.selectedQuestion === null &&
+              !state.questionnaire.questions[index + 1]?.hidden
+            ) {
+              state.selectedQuestion = state.questionnaire.questions[index + 1];
+            }
+            index++;
+          }
+          while (index - 1 > -1) {
+            if (
+              state.selectedQuestion === null &&
+              !state.questionnaire.questions[index - 1]?.hidden
+            ) {
+              state.selectedQuestion = state.questionnaire.questions[index - 1];
+              break;
+            }
+            index--;
           }
           state.questionnaire.questions.splice(index, 1);
         }
@@ -122,30 +135,39 @@ const questionnaireStore = createSlice({
 
     toggleHideSelectedQuestion: (state) => {
       if (state.selectedQuestion) {
-        const index = state.questionnaire.questions.findIndex(
+        let index = state.questionnaire.questions.findIndex(
           (question) => question?.id === state.selectedQuestion?.id
         );
         const question = state.questionnaire.questions[index];
         if (question && !question.locked) {
-          console.log("toggleHideSelectedQuestion");
           if (state.selectedQuestion.hidden) {
             state.selectedQuestion.hidden = false;
             question.hidden = false;
           } else {
             state.selectedQuestion.hidden = true;
-            // selectTheNextAvailableQuestion();
-            if (index > -1) {
-              if (index + 1 < state.questionnaire.questions.length) {
+            question.hidden = true;
+            state.selectedQuestion = null;
+            while (index + 1 < state.questionnaire.questions.length) {
+              if (
+                state.selectedQuestion === null &&
+                !state.questionnaire.questions[index + 1]?.hidden
+              ) {
                 state.selectedQuestion =
                   state.questionnaire.questions[index + 1];
-              } else if (index - 1 > -1) {
+              }
+              index++;
+            }
+            while (index - 1 > -1) {
+              if (
+                state.selectedQuestion === null &&
+                !state.questionnaire.questions[index - 1]?.hidden
+              ) {
                 state.selectedQuestion =
                   state.questionnaire.questions[index - 1];
-              } else {
-                state.selectedQuestion = null;
+                break;
               }
+              index--;
             }
-            question.hidden = true;
           }
         }
       }
