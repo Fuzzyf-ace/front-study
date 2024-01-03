@@ -1,13 +1,4 @@
-import {
-  Checkbox,
-  Col,
-  Collapse,
-  CollapseProps,
-  Input,
-  List,
-  Radio,
-  Row,
-} from "antd";
+import { Checkbox, Collapse, CollapseProps, Input, List, Radio } from "antd";
 import { FC } from "react";
 import "../styles/index.css";
 const TextComponents = [

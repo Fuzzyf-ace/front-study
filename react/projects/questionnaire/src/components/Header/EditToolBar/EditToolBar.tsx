@@ -3,11 +3,9 @@ import { FC } from "react";
 import {
   DeleteOutlined,
   CopyOutlined,
-  BlockOutlined,
   LockOutlined,
   UnlockOutlined,
   EyeInvisibleOutlined,
-  EyeOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
@@ -20,7 +18,7 @@ import {
 } from "../../../store/modules/questionnaireStore";
 
 const EditToolBar: FC = () => {
-  const selectedQuestion: Question = useSelector(
+  const selectedQuestion: Question | null = useSelector(
     (state: RootState) => state.questionnaire.selectedQuestion
   );
   const dispatch = useDispatch();

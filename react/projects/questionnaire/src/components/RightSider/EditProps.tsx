@@ -70,7 +70,7 @@ const EditProps: FC = () => {
     );
   };
 
-  const selectedQuestion: Question = useSelector(
+  const selectedQuestion: Question | null = useSelector(
     (state: RootState) => state.questionnaire.selectedQuestion
   );
   const props = selectedQuestion?.questionProps;

@@ -10,7 +10,7 @@ type Question = {
   questionProps: QuestionPropTypes;
   locked?: boolean;
   hidden?: boolean;
-} | null;
+};
 
 type QuestionComponentTypes = typeof Canvas.Title;
 
