@@ -6,12 +6,13 @@ import { TitleProps } from "../../Canvas/Title";
 import classNames from "classnames";
 import "../styles/index.css";
 import { setSelectedQuestion } from "../../../store/modules/questionnaireStore";
+import { RootState } from "../../../store";
 const QuestionsMenu: FC = () => {
   const questions = useSelector(
-    (state: any) => state.questionnaire.questionnaire.questions
+    (state: RootState) => state.questionnaire.questionnaire.questions
   );
   const selectedQuestionId = useSelector(
-    (state: any) => state.questionnaire.selectedQuestion.id
+    (state: RootState) => state.questionnaire.selectedQuestion?.id
   );
   const dispatch = useDispatch();
   const onclickHandler = (id: string) => {

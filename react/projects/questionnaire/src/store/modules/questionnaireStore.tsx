@@ -97,10 +97,10 @@ const questionnaireStore = createSlice({
         if (index > -1) {
           if (index + 1 < state.questionnaire.questions.length) {
             state.selectedQuestion = state.questionnaire.questions[index + 1];
-            console.log("go next", state.questionnaire.questions[index + 1]);
-          } else {
+          } else if (index - 1 > -1) {
             state.selectedQuestion = state.questionnaire.questions[index - 1];
-            console.log("go prev", state.questionnaire.questions[index - 1]);
+          } else {
+            state.selectedQuestion = null;
           }
           state.questionnaire.questions.splice(index, 1);
         }
