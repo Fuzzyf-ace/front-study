@@ -34,49 +34,43 @@ const QuestionMenuItem: FC<Props> = ({ question }) => {
     transition,
   };
 
-  switch (question.questionType) {
-    case "Title":
-      const titleProps = question.questionProps as TitleProps;
-      return (
-        <List.Item
-          key={question.id}
-          className={classNames("question-menu-item", {
-            selected: question.id === selectedQuestionId,
-          })}
-          onClick={() => dispatch(setSelectedQuestion(question.id))}
-          actions={[
-            question.hidden && (
-              <Tooltip title={question.hidden ? "show" : "hide"}>
-                <Button
-                  shape="circle"
-                  icon={<EyeInvisibleOutlined />}
-                  type={question.hidden ? "primary" : "default"}
-                  onClick={() => {
-                    dispatch(toggleHideSelectedQuestion());
-                  }}
-                />
-              </Tooltip>
-            ),
-            <Tooltip title={"drag"}>
-              <Button
-                ref={setActivatorNodeRef}
-                shape="circle"
-                icon={<DragOutlined />}
-                type="primary"
-                {...listeners}
-              ></Button>
-            </Tooltip>,
-          ]}
-          ref={setNodeRef}
-          style={{ ...style, padding: "10px" }}
-          {...attributes}
-        >
-          <List.Item.Meta title={titleProps.title} />
-        </List.Item>
-      );
-    default:
-      return null;
-  }
+  return (
+    <List.Item
+      key={question.id}
+      className={classNames("question-menu-item", {
+        selected: question.id === selectedQuestionId,
+      })}
+      onMouseOver={() => dispatch(setSelectedQuestion(question.id))}
+      actions={[
+        question.hidden && (
+          <Tooltip title={question.hidden ? "show" : "hide"}>
+            <Button
+              shape="circle"
+              icon={<EyeInvisibleOutlined />}
+              type={question.hidden ? "primary" : "default"}
+              onClick={() => {
+                dispatch(toggleHideSelectedQuestion());
+              }}
+            />
+          </Tooltip>
+        ),
+        <Tooltip title={"drag"}>
+          <Button
+            ref={setActivatorNodeRef}
+            shape="circle"
+            icon={<DragOutlined />}
+            type="primary"
+            {...listeners}
+          ></Button>
+        </Tooltip>,
+      ]}
+      ref={setNodeRef}
+      style={{ ...style, padding: "10px" }}
+      {...attributes}
+    >
+      <List.Item.Meta title={question.questionProps.title} />
+    </List.Item>
+  );
 };
 
 export default QuestionMenuItem;

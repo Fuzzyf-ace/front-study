@@ -22,6 +22,7 @@ const questionnaire: Questionnaire = {
       id: uuidv4(),
       questionType: "Title",
       questionProps: {
+        id: "",
         title: "This is a title",
         level: 1,
       },
@@ -30,6 +31,7 @@ const questionnaire: Questionnaire = {
       id: uuidv4(),
       questionType: "Radio",
       questionProps: {
+        id: "",
         title: "What's your favorite color?",
         options: [
           {
