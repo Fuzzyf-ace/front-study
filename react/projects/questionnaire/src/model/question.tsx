@@ -1,6 +1,6 @@
 import Canvas from "../components/Canvas";
 import { TitleProps } from "../components/Canvas/Title";
-type QuestionTypes = "Title" | "";
+type QuestionTypes = "Title" | "Radio";
 
 type QuestionPropTypes = TitleProps | {};
 

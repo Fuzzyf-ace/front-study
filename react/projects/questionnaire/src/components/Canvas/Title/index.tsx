@@ -28,11 +28,6 @@ const Title: FC<TitleProps> = ({
   disabled,
 }: TitleProps) => {
   const dispatch = useDispatch();
-
-  const onclickHandler = () => {
-    dispatch(setSelectedQuestion(id));
-  };
-
   const selectedQuestion = useSelector(
     (state: RootState) => state.questionnaire.selectedQuestion
   );
@@ -40,7 +35,7 @@ const Title: FC<TitleProps> = ({
   return (
     <div
       className={classnames("question", { selected: selectedId === id })}
-      onClick={onclickHandler}
+      onClick={() => dispatch(setSelectedQuestion(id))}
     >
       <Typography.Title level={level} disabled={disabled}>
         {title}

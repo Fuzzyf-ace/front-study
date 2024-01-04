@@ -11,6 +11,7 @@ import LeftSider from "../LeftSider/LeftSider";
 import RightSider from "../RightSider/RightSider";
 import { TitleProps } from "../Canvas/Title";
 import Header from "../Header/Header";
+import { RadioProps } from "../Canvas/Radio";
 /**
  *
  * @param question
@@ -41,6 +42,22 @@ const Layout: FC = () => {
           title={titleProps.title}
           level={titleProps.level}
           disabled={question.locked}
+        />
+      );
+    }
+    if (question?.questionType === "Radio") {
+      const radioProps = question.questionProps as RadioProps;
+      if (question.hidden) {
+        return null;
+      }
+      return (
+        <Canvas.Radio
+          key={question.id}
+          id={question.id}
+          title={radioProps.title}
+          disabled={question.locked}
+          options={radioProps.options}
+          selected={radioProps.selected}
         />
       );
     }
