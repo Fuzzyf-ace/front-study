@@ -4,6 +4,9 @@
 
   .header-start {
     flex: 1;
+    height: 70px;
+    display: flex;
+    align-items: center;
   }
   .header-center {
     flex: auto;

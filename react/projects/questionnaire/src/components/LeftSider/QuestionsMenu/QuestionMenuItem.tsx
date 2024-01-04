@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { EyeInvisibleOutlined, DragOutlined } from "@ant-design/icons";
 import { setSelectedQuestion } from "../../../store/modules/questionnaireStore";
-import { TitleProps } from "../../Canvas/Title";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
