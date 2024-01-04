@@ -15,11 +15,8 @@ const Header: FC = () => {
   const titleInputRef = useRef<InputRef>(null);
   const [onEditing, setOnEditing] = useState(false);
 
-  //这里有什么好方法吗？
-  const [temp, setTemp] = useState<InputRef>();
   useEffect(() => {
     if (titleInputRef.current) {
-      setTemp(titleInputRef.current);
       titleInputRef.current.focus();
     }
   }, [onEditing]);
@@ -51,7 +48,6 @@ const Header: FC = () => {
                 level={3}
                 onClick={() => {
                   setOnEditing(true);
-                  titleInputRef.current?.focus();
                 }}
               >
                 {questionnaire.title}
