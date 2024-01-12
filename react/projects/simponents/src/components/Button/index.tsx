@@ -52,7 +52,7 @@ const Button: FC<ButtonProps> = (props) => {
       );
   else
     return (
-      <button className={classname} {...restProps}>
+      <button className={classname} disabled={disabled} {...restProps}>
         {children}
       </button>
     );
