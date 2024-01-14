@@ -1,39 +1,58 @@
 import classNames from "classnames";
-import { FC, createContext, useState } from "react";
+import {
+  Children,
+  FC,
+  FunctionComponentElement,
+  cloneElement,
+  createContext,
+  useState,
+} from "react";
+import { MenuItemProps } from "./menuItem";
 
 export type MenuProps = {
-  defaultIndex?: number;
-  mode?: "horizontal" | "vertical";
-  onSelect?: (selectedIndex: number) => void;
+  defaultIndex?: string;
+  menuMode?: "horizontal" | "vertical";
+  onSelect?: (selectedIndex: string) => void;
 } & React.HTMLAttributes<HTMLElement>;
 
 type MenuContextType = {
-  selectedIndex: number;
-  onSelect?: (selectedIndex: number) => void;
+  selectedIndex: string;
+  onSelect?: (selectedIndex: string) => void;
+  menuMode?: "horizontal" | "vertical";
 };
 export const MenuContext = createContext<MenuContextType>({
-  selectedIndex: 0,
+  selectedIndex: "0",
 });
 
 const Menu: FC<MenuProps> = (props) => {
-  const { defaultIndex, className, mode, style, onSelect, children } = props;
+  const { defaultIndex, className, menuMode, style, onSelect, children } =
+    props;
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
   const classname = classNames("menu", className, {
-    "menu-vertical": mode === "vertical",
+    "menu-vertical": menuMode === "vertical",
   });
-
+  const renderChildren = () => {
+    return Children.map(children, (child, index) => {
+      const childElement = child as FunctionComponentElement<MenuItemProps>;
+      const { displayName } = childElement.type;
+      if (displayName === "MenuItem" || displayName === "SubMenu")
+        return cloneElement(childElement, { index: index.toString() });
+      else throw Error("Menu has a child which is not a MenuItem component");
+    });
+  };
   return (
     <ul className={classname} style={style}>
       <MenuContext.Provider
         value={{
-          selectedIndex: selectedIndex ? selectedIndex : 0,
+          selectedIndex: selectedIndex ? selectedIndex : "0",
           onSelect: (index) => {
-            setSelectedIndex(index);
+            setSelectedIndex(index.toString());
             if (onSelect) onSelect(index);
           },
+          menuMode: menuMode ? menuMode : "horizontal",
         }}
       >
-        {children}
+        {renderChildren()}
       </MenuContext.Provider>
     </ul>
   );
@@ -41,8 +60,8 @@ const Menu: FC<MenuProps> = (props) => {
 
 // why I can set default props here?
 Menu.defaultProps = {
-  defaultIndex: 0,
-  mode: "horizontal",
+  defaultIndex: "0",
+  menuMode: "horizontal",
 };
 
 export default Menu;
