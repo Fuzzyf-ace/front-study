@@ -28,13 +28,21 @@ const Menu: FC<MenuProps> = (props) => {
   const { defaultIndex, className, menuMode, style, onSelect, children } =
     props;
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
-  const classname = classNames("menu", className, {
-    "menu-vertical": menuMode === "vertical",
-  });
+  const classname = classNames(
+    "menu",
+    className,
+    {
+      "menu-vertical": menuMode === "vertical",
+    },
+    {
+      "menu-horizontal": menuMode === "horizontal",
+    }
+  );
   const renderChildren = () => {
     return Children.map(children, (child, index) => {
       const childElement = child as FunctionComponentElement<MenuItemProps>;
       const { displayName } = childElement.type;
+      // 验证子元素是否是 MenuItem 或者 SubMenu
       if (displayName === "MenuItem" || displayName === "SubMenu")
         return cloneElement(childElement, { index: index.toString() });
       else throw Error("Menu has a child which is not a MenuItem component");

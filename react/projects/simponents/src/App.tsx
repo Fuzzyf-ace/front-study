@@ -4,6 +4,10 @@ import Button, { ButtonSize, ButtonType } from "./components/Button";
 import Menu from "./components/Menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import Icon from "./components/Icon";
+library.add(fas);
 function App() {
   return (
     <div className="App">
@@ -17,7 +21,7 @@ function App() {
         onSelect={(index) => {
           console.log(index);
         }}
-        menuMode="vertical"
+        // menuMode="vertical"
       >
         <MenuItem>cool link</MenuItem>
         <MenuItem>cool link</MenuItem>
@@ -28,6 +32,7 @@ function App() {
           <MenuItem>dropdown3</MenuItem>
         </SubMenu>
       </Menu>
+      <Icon icon="coffee" theme="danger" size="10x" />
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import classNames from "classnames";
 import React, { useContext } from "react";
 import { MenuContext } from ".";
+import Icon from "../Icon";
+import { CSSTransition } from "react-transition-group";
+import Transition from "../Transistion";
 
 export type SubMenuProps = {
   index?: string;
@@ -52,19 +55,28 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
       else throw Error("SubMenu has a child which is not a MenuItem component");
     });
     return (
-      <ul
-        className={classNames("submenu", {
-          "menu-opened": menuOpen,
-        })}
-      >
-        {childrenComponent}
-      </ul>
+      <Transition in={menuOpen} timeout={500} animation="zoom-in-left">
+        <ul
+          className={classNames("submenu", {
+            "menu-opened": menuOpen,
+          })}
+        >
+          {childrenComponent}
+        </ul>
+      </Transition>
     );
   };
   return (
     <li key={index} className={classname} {...hoverEvents}>
-      <div className="submenu-title" {...clickEvents}>
+      <div
+        className={classNames("submenu-title", {
+          vertical: useContext(MenuContext).menuMode === "vertical",
+          opened: menuOpen,
+        })}
+        {...clickEvents}
+      >
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>
