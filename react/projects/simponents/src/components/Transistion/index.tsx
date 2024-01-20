@@ -1,4 +1,4 @@
-import React from "react";
+import React, { DOMElement } from "react";
 import { CSSTransition } from "react-transition-group";
 import { CSSTransitionProps } from "react-transition-group/CSSTransition";
 type Animation =
@@ -13,10 +13,12 @@ type TransitionProps = CSSTransitionProps & {
 
 const Transition: React.FC<TransitionProps> = (props) => {
   const { children, classNames, animation, ...restProps } = props;
+  const ref = React.useRef(null);
   return (
     <CSSTransition
       classNames={classNames ? classNames : animation}
       {...restProps}
+      nodeRef={ref}
     >
       {children}
     </CSSTransition>
