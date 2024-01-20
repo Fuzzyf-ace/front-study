@@ -1,6 +1,12 @@
 import React from "react";
 import Menu, { MenuProps } from ".";
 import MenuItem from "./menuItem";
+
+// why this import is needed?
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+library.add(fas);
+
 import {
   RenderResult,
   cleanup,
@@ -93,7 +99,7 @@ describe("test Menu and MenuItem component", () => {
   });
 
   it("should show dropdown items when hover on subMenu", async () => {
-    expect(wrapper.queryByText("drop1")).not.toBeVisible();
+    expect(wrapper.queryByText("drop1")).not.toBeInTheDocument();
     const dropdownElement = wrapper.getByText("dropdown");
     fireEvent.mouseEnter(dropdownElement);
     // 异步的代码需要等待执行完毕，等待dropdown出现

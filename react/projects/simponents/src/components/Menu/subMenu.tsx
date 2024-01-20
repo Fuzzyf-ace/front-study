@@ -2,7 +2,6 @@ import classNames from "classnames";
 import React, { useContext } from "react";
 import { MenuContext } from ".";
 import Icon from "../Icon";
-import { CSSTransition } from "react-transition-group";
 import Transition from "../Transistion";
 
 export type SubMenuProps = {
