@@ -17,6 +17,7 @@ import useDebounce from "./useDebounce";
 interface DataSourceObject {
   value: string;
 }
+//define the type of DataSourceType when using AutoComplete
 export type DataSourceType<T = {}> = T & DataSourceObject;
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
   fetchSuggestions: (
@@ -74,19 +75,19 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     setHighlightIndex(index);
   };
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    switch (e.keyCode) {
-      case 13:
+    switch (e.key) {
+      case "Enter":
         if (suggestions[highlightIndex]) {
           handleSelect(suggestions[highlightIndex]);
         }
         break;
-      case 38:
+      case "ArrowUp":
         highlight(highlightIndex - 1);
         break;
-      case 40:
+      case "ArrowDown":
         highlight(highlightIndex + 1);
         break;
-      case 27:
+      case "Escape":
         setShowDropdown(false);
         break;
       default:
