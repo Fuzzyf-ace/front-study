@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
@@ -17,6 +18,7 @@ export type ThemeProps =
   | "dark";
 export interface IconProps extends FontAwesomeIconProps {
   theme?: ThemeProps;
+  icon: IconProp;
 }
 const Icon: React.FC<IconProps> = (props) => {
   const { className, theme, ...restProps } = props;

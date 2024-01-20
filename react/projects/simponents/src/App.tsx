@@ -5,7 +5,8 @@ import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
 import Icon from "./components/Icon";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fas, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Input from "./components/Input";
 library.add(fas);
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         </SubMenu>
       </Menu>
       <Icon icon="coffee" theme="danger" size="10x" />
+      <Input icon={"chevron-right"} />
     </div>
   );
 }
