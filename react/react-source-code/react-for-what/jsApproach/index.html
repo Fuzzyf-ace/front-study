@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="content">Click me, count: 0</div>
+    </div>
+</body>
+<style>
+    #content {
+        height: 100px;
+        background-color: gray;
+        border: 1px solid black;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+        padding: 0.5rem 1rem;
+        user-select: none;
+
+    }
+</style>
+<script lang="javascript">
+    function changeText() {
+        let count = 0;
+        return function () {
+            count++;
+            document.getElementById('content').innerHTML = `Click me, count: ${count}`;
+        }
+    }
+    document.getElementById('content').onclick = changeText();
+</script>
+
+</html>

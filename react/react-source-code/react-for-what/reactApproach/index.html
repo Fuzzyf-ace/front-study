@@ -1,0 +1,44 @@
+<!-- this does not work now -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<style>
+    #content {
+        height: 100px;
+        background-color: gray;
+        border: 1px solid black;
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+        padding: 0.5rem 1rem;
+        user-select: none;
+
+    }
+</style>
+<script lang="text/babel">
+    function Button() {
+        const [count, setCount] = React.useState(0);
+        return <div id="content" onClick={() => setCount(count + 1)}>Click me, count: {count}</div>
+    }
+    const container = document.getElementById('root');
+    const root = ReactDom.createRoot(container);
+    root.render(
+        <Button />
+    );
+</script>
+
+</html>
