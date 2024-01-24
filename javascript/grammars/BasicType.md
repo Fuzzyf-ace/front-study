@@ -16,6 +16,7 @@ Function
 ### instanceof && typeof
 
 typeof might return the followings: "undefined", "object", "function", "boolean", "number", "bigint", "string", "symbol" [[from mdn]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
+instanceof might return true or false, depends on the operand on the rightside is an instance of the constructor on the leftside. [[from mdn]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
 
 instanceof: if the operand on the leftside is a primitive type, we can wrap it with an Object() to convert it to a reference type(an instance).
 
