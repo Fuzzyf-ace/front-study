@@ -25,8 +25,14 @@ function createRealDOM(VirtualNode) {
   //   console.log("REACT_ELEMENT", REACT_ELEMENT);
   //   console.log(VirtualNode.$$typeof === REACT_ELEMENT); //false
   if (type && VirtualNode.$$typeof === REACT_ELEMENT) {
-    // if input is a function component
     if (typeof type === "function") {
+      // if input is a class component
+      if (type.isReactComponent) {
+        const instance = new type(props);
+        const VirtualNode = instance.render();
+        return createRealDOM(VirtualNode);
+      }
+      // if input is a function component
       const VirtualNode = type(props);
       return createRealDOM(VirtualNode);
     } else {
