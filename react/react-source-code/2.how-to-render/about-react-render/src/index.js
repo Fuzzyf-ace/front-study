@@ -21,6 +21,7 @@ const ele = (
 
 // mount created elements to real dom
 ReactDOM.render(
+  //   React.createElement("div", {}, "Hello JSX"),
   //   {
   //     // this is a virtual dom demo, the return value of React.createElement function
   //     $$typeof: REACT_ELEMENT,
