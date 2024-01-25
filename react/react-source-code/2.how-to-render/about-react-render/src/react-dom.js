@@ -24,7 +24,6 @@ function createRealDOM(VirtualNode) {
   //   console.log("VirtualNode.$$typeof", VirtualNode.$$typeof);
   //   console.log("REACT_ELEMENT", REACT_ELEMENT);
   //   console.log(VirtualNode.$$typeof === REACT_ELEMENT); //false
-  debugger;
   if (type && VirtualNode.$$typeof === REACT_ELEMENT) {
     realDOM = document.createElement(VirtualNode.type);
   }
@@ -45,6 +44,30 @@ function createRealDOM(VirtualNode) {
     }
   }
   // 3. set props
+  if (props) {
+    Object.keys(props).forEach((key) => {
+      if (key !== "children") {
+        if (key === "className") {
+          // handle className
+          realDOM.setAttribute("class", props[key]);
+        } else if (key === "style") {
+          // handle style
+          const styleObj = props[key];
+          Object.keys(styleObj).forEach((styleKey) => {
+            realDOM.style[styleKey] = styleObj[styleKey];
+          });
+        } else if (/^on[A-Z].*/.test(key)) {
+          // handle event
+          const eventName = key.slice(2).toLowerCase();
+          //   console.log("eventName", eventName);
+          realDOM.addEventListener(eventName, props[key]);
+        } else {
+          // handle other props
+          realDOM.setAttribute(key, props[key]);
+        }
+      }
+    });
+  }
 
   return realDOM;
 }
