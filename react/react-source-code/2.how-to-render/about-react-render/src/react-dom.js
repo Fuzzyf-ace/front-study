@@ -30,6 +30,7 @@ function createRealDOM(VirtualNode) {
       if (type.isReactComponent) {
         const instance = new type(props);
         const VirtualNode = instance.render();
+        instance.oldVirtualNode = VirtualNode;
         return createRealDOM(VirtualNode);
       }
       // if input is a function component
@@ -80,12 +81,19 @@ function createRealDOM(VirtualNode) {
       }
     });
   }
-
+  // 4. set dom property to VirtualNode, so that we can find the real dom for updating
+  VirtualNode.dom = realDOM;
   return realDOM;
+}
+
+function findDOMByVirtualNode(VirtualNode) {
+  return VirtualNode.dom;
 }
 
 const ReactDOM = {
   render,
+  findDOMByVirtualNode,
+  createRealDOM,
 };
 
 export default ReactDOM;

@@ -11,12 +11,24 @@ import ReactDOM from "./react-dom";
 // }
 
 class ClassComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: props.name,
+    };
+  }
   render() {
-    const { name, color } = this.props;
+    const { color } = this.props;
     return (
       <div className="class-component">
         <p style={{ color }}>Class Component</p>
-        <p>{name}</p>
+        <p
+          onClick={() => {
+            this.setState({ name: this.state.name + " new appending" });
+          }}
+        >
+          {this.state.name}
+        </p>
       </div>
     );
   }
