@@ -21,10 +21,14 @@ function createElement(type, properties, children) {
     key,
   };
 }
+export function createRef() {
+  return { current: null };
+}
 
 const React = {
   createElement,
   Component,
+  createRef,
 };
 
 export default React;

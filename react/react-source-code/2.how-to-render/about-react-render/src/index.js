@@ -1,4 +1,4 @@
-import React from "./react";
+import React, { createRef } from "./react";
 import ReactDOM from "./react-dom";
 
 // function FunctionComponent({ name, color }) {
@@ -10,6 +10,7 @@ import ReactDOM from "./react-dom";
 //   );
 // }
 
+const inputRef = createRef();
 class ClassComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +23,12 @@ class ClassComponent extends React.Component {
     return (
       <div className="class-component">
         <p style={{ color }}>Class Component</p>
+        <input ref={inputRef}>dsaf</input>
         <p
           onClick={() => {
             // debugger;
             this.setState({ name: this.state.name + " new appending" });
+            inputRef.current.focus();
           }}
         >
           {this.state.name}

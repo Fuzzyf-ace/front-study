@@ -18,7 +18,7 @@ function mount(VirtualNode, containerDOM) {
 function createRealDOM(VirtualNode) {
   //type, props, and children are the properties we needed when use React.creatElement function
   // 1. create real dom
-  const { type, props } = VirtualNode;
+  const { type, props, ref } = VirtualNode;
   const children = props.children;
   let realDOM = null;
   //   console.log("VirtualNode.$$typeof", VirtualNode.$$typeof);
@@ -84,6 +84,10 @@ function createRealDOM(VirtualNode) {
   }
   // 4. set dom property to VirtualNode, so that we can find the real dom for updating
   VirtualNode.dom = realDOM;
+  // 5. set ref if it exists
+  if (ref) {
+    ref.current = realDOM;
+  }
   return realDOM;
 }
 
