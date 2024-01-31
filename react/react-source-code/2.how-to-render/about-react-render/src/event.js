@@ -1,6 +1,7 @@
 import { updaterQueue, flushUpdaterQueue } from "./Component";
 
 export function addEvent(realDOM, eventType, callback) {
+  debugger;
   realDOM.attachedEvent = realDOM.attachedEvent || {};
   realDOM.attachedEvent[eventType] = callback;
   if (document[eventType]) return;
@@ -8,6 +9,7 @@ export function addEvent(realDOM, eventType, callback) {
 }
 
 function dispatchEvent(nativeEvent) {
+  // 事件合成机制：面向切片编程，对setState进行包装，批量更新state，刷新一次
   updaterQueue.isBatchingUpdate = true;
   // 事件合成机制：屏蔽浏览器差异
   const syntheticEvent = createSyntheticEvent(nativeEvent);

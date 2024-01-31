@@ -3,7 +3,7 @@ import Component from "./Component";
 function createElement(type, properties, children) {
   const ref = properties.ref || null;
   const key = properties.key || null;
-  ["key", "ref", "__self", "__source"].forEach((k) => delete properties[k]);
+  //   ["__self", "__source"].forEach((k) => delete properties[k]);
   const props = {
     ...properties,
   };
@@ -11,7 +11,7 @@ function createElement(type, properties, children) {
   if (arguments.length > 3) {
     props.children = Array.prototype.slice.call(arguments, 2);
   } else {
-    props.children = [children];
+    props.children = children ? [...children] : [];
   }
   return {
     $$typeof: REACT_ELEMENT,

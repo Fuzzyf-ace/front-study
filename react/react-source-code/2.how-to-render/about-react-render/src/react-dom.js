@@ -42,18 +42,19 @@ function createRealDOM(VirtualNode) {
   }
   // 2. set children
   if (children) {
+    const containerDOM = realDOM;
     if (Array.isArray(children)) {
       children.forEach((child) => {
         if (typeof child === "string") {
-          realDOM.appendChild(document.createTextNode(child));
+          containerDOM.appendChild(document.createTextNode(child));
         } else {
-          mount(child, realDOM);
+          mount(child, containerDOM);
         }
       });
     } else if (typeof children === "string") {
-      realDOM.appendChild(document.createTextNode(children));
+      containerDOM.appendChild(document.createTextNode(children));
     } else {
-      mount(children, realDOM);
+      mount(children, containerDOM);
     }
   }
   // 3. set props
