@@ -1,5 +1,5 @@
 import { REACT_ELEMENT } from "./react";
-
+import { addEvent } from "./event";
 function render(VirtualNode, containerDOM) {
   // 将虚拟dom转换成真实dom（挂载）
   // mount virtual dom to real dom
@@ -70,10 +70,11 @@ function createRealDOM(VirtualNode) {
             realDOM.style[styleKey] = styleObj[styleKey];
           });
         } else if (/^on[A-Z].*/.test(key)) {
-          // handle event
-          const eventName = key.slice(2).toLowerCase();
-          //   console.log("eventName", eventName);
-          realDOM.addEventListener(eventName, props[key]);
+          // handle event: the simplest way
+          // const eventName = key.slice(2).toLowerCase();
+          // realDOM.addEventListener(eventName, props[key]);
+          // handle event: with synthetic event
+          addEvent(realDOM, key.toLowerCase(), props[key]);
         } else {
           // handle other props
           realDOM.setAttribute(key, props[key]);

@@ -24,6 +24,7 @@ class ClassComponent extends React.Component {
         <p style={{ color }}>Class Component</p>
         <p
           onClick={() => {
+            // debugger;
             this.setState({ name: this.state.name + " new appending" });
           }}
         >
