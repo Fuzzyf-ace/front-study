@@ -1,5 +1,6 @@
 import { REACT_ELEMENT } from "./react";
 import { addEvent } from "./event";
+// this function is called when we use ReactDOM.render function in index file
 function render(VirtualNode, containerDOM) {
   // 将虚拟dom转换成真实dom（挂载）
   // mount virtual dom to real dom
@@ -24,19 +25,24 @@ function createRealDOM(VirtualNode) {
   //   console.log("VirtualNode.$$typeof", VirtualNode.$$typeof);
   //   console.log("REACT_ELEMENT", REACT_ELEMENT);
   //   console.log(VirtualNode.$$typeof === REACT_ELEMENT); //false
+  // if virtual node is a react element
   if (type && VirtualNode.$$typeof === REACT_ELEMENT) {
+    // if input is a class component, we need to create instance and
     if (typeof type === "function") {
-      // if input is a class component
       if (type.isReactComponent) {
         const instance = new type(props);
+        // debugger;
+        ref && (ref.current = instance);
         const VirtualNode = instance.render();
         instance.oldVirtualNode = VirtualNode;
         return createRealDOM(VirtualNode);
+      } else {
+        // if input is a function component
+        const VirtualNode = type(props);
+        return createRealDOM(VirtualNode);
       }
-      // if input is a function component
-      const VirtualNode = type(props);
-      return createRealDOM(VirtualNode);
     } else {
+      //if input is a basic html element
       realDOM = document.createElement(VirtualNode.type);
     }
   }
@@ -86,9 +92,7 @@ function createRealDOM(VirtualNode) {
   // 4. set dom property to VirtualNode, so that we can find the real dom for updating
   VirtualNode.dom = realDOM;
   // 5. set ref if it exists
-  if (ref) {
-    ref.current = realDOM;
-  }
+  ref && (ref.current = realDOM);
   return realDOM;
 }
 

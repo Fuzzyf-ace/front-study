@@ -29,10 +29,12 @@ class Updater {
   }
   launchUpdate() {
     const { classInstance, pendingStates } = this;
+    debugger;
     classInstance.state = pendingStates.reduce((preState, curState) => {
       return { ...preState, ...curState };
     }, classInstance.state);
     pendingStates.length = 0;
+    classInstance.update();
   }
 }
 
@@ -50,7 +52,8 @@ export default class Component {
     // this.state = { ...this.state, ...partialState };
     this.updater.addState(partialState);
     // 更新组件
-    this.update();
+    // we dont need to update component every time when we call setState, we can batch update using updaterQueue and syntheticEvent, the state will be updated only once for one syntheticEvent
+    // this.update();
   }
   update() {
     const oldVirtualNode = this.oldVirtualNode;

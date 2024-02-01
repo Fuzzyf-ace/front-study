@@ -25,10 +25,20 @@ export function createRef() {
   return { current: null };
 }
 
+export function forwardRef(render) {
+  // copilot suggestion:
+  //   return class extends Component {
+  //     render() {
+  //       return render(this.props, this.props.ref);
+  //     }
+  //   };
+}
+
 const React = {
   createElement,
   Component,
   createRef,
+  forwardRef,
 };
 
 export default React;

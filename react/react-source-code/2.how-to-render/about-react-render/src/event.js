@@ -1,7 +1,6 @@
 import { updaterQueue, flushUpdaterQueue } from "./Component";
 
 export function addEvent(realDOM, eventType, callback) {
-  debugger;
   realDOM.attachedEvent = realDOM.attachedEvent || {};
   realDOM.attachedEvent[eventType] = callback;
   if (document[eventType]) return;
@@ -14,6 +13,7 @@ function dispatchEvent(nativeEvent) {
   // 事件合成机制：屏蔽浏览器差异
   const syntheticEvent = createSyntheticEvent(nativeEvent);
   let target = nativeEvent.target;
+  // TODO: 这里有点没看懂
   while (target) {
     syntheticEvent.currentTarget = target;
     const eventType = `on${nativeEvent.type}`;
