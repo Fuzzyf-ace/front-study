@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯布局</title>
+</head>
+
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    header {}
+
+    main {
+        flex: auto;
+        display: flex;
+        flex-direction: row;
+    }
+
+    footer {}
+
+    .bar-left {
+        flex: 0 0 100px;
+    }
+
+    .main-content {
+        flex: auto;
+    }
+
+    .bar-right {
+        flex: 0 0 100px;
+    }
+
+    span {
+        display: block;
+    }
+</style>
+
+<body>
+    <header>
+        <p>Header</p>
+    </header>
+
+    <main>
+        <div class="bar-left">
+            <p>Left</p>
+        </div>
+        <div class="main-content">Main
+            <p>Content<span>span</span></p>
+
+        </div>
+        <div class="bar-right">
+            <p>Left</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+
+</body>
+
+</html>

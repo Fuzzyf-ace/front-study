@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <style>
+        .outer {
+            width: 100px;
+            display: block flex;
+        }
+
+        .middle {
+            width: 60px;
+            display: block flow;
+        }
+
+        .inner {
+            width: 30px;
+        }
+
+        p {
+            margin: 5px 10px;
+        }
+
+        .element--1 {
+            width: 500px;
+        }
+
+        .element--p {
+            width: 100px;
+            margin: auto;
+        }
+
+        .list {
+            margin: 40px auto;
+            /* border: 1px dashed black; */
+            padding: 1px;
+
+        }
+
+        .item {
+            margin: 20px auto;
+            border: 1px solid black;
+        }
+
+        .inline-picture {
+            display: inline;
+            height: 1rem;
+        }
+
+        .wrapper-1 {
+            background-color: red;
+            display: inline flex;
+            height: 1rem;
+            font-size: 0.5rem;
+        }
+
+        .wrapper-2 {
+            background-color: green;
+            display: inline flex;
+            flex-direction: column;
+        }
+
+        .wrapper-3 {
+            background-color: blue;
+            display: inline flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <p>Outer</p>
+        <div class="middle">
+            Middle
+            <div class="inner">
+                Inner
+            </div>
+        </div>
+    </div>
+
+    <div class="element--1">
+        <p class="element--p">this is an element--p</p>
+    </div>
+
+    <ul class="list">
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+        <li class="item">6</li>
+    </ul>
+    <p>dasfas <img class="inline-picture"
+            src="https://search-operate.cdn.bcebos.com/e8cbce1d53432a6950071bf26b640e2b.gif"
+            alt="Grapefruit slice atop a pile of other slices" />大师傅撒
+    </p>
+    <div>
+        this is a
+        <div class="wrapper-1">
+            <div class="content-1">
+                111
+            </div>
+            <div class="wrapper-2">
+                <div class="content-2">
+                    222
+                </div>
+                <div class="wrapper-3">
+                    <div class="content-3">
+                        333
+                    </div>
+                </div>
+            </div>
+        </div>
+        complicate inline flex
+    </div>
+</body>
+
+</html>
