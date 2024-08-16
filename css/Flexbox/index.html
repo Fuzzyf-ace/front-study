@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        html {
+            writing-mode: horizontal-tb;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .flex-container {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 20px 30px;
+            align-items: stretch;
+        }
+
+        .flex-item {
+            width: 100px;
+            background-color: burlywood;
+            margin: 10px;
+        }
+
+        .flex-item#item-1,
+        .flex-item#item-1>* {
+            height: 100px;
+            order: -1;
+            flex-shrink: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .flex-item#item-2 {
+            height: 200px;
+        }
+
+        .flex-item#item-3 {
+            height: 300px;
+            flex-shrink: 2;
+
+        }
+
+        .flex-item#item-4 {
+            height: 400px;
+            order: -1;
+        }
+
+        .flex-item#item-5 {
+            height: 500px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="flex-item" id="item-1">
+            <p>1大法师的的撒风飒的</p>
+        </div>
+        <div class="flex-item" id="item-2">2</div>
+        <div class="flex-item" id="item-3">3</div>
+        <div class="flex-item" id="item-4">4</div>
+        <div class="flex-item" id="item-5">5</div>
+    </div>
+
+
+</body>
+
+</html>
